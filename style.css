@@ -1,42 +1,132 @@
-/* ←これを先頭へ入れるとシステムテーマを完全にオフにできる */
-:root { color-scheme: none; }
-html,body{ background:#000!important; color:#fff!important; }
+/* ================================
+   📌 PWAテーマ固定（iOSダーク/ライト無視）
+================================ */
+:root { color-scheme:none; }
 
-/* 以下にAスタイルのCSS（前回送ったコード）を続けて入れる */
-
-body.app-body{
-  background:#3b2f2f;
-  color:#e9d8a6;
-  font-family:"Noto Sans JP",sans-serif;
+body.app-body {
+  margin:0;
+  background:#F7F7FB;
+  color:#4C435A;
+  font-family:"Noto Sans JP","Hiragino Sans","Segoe UI",sans-serif;
 }
+
+/* コンテナ */
+.app-container{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+/* HEADER */
 .app-header{
-  background:#654321;
-  border-bottom:2px solid #d4a373;
+  text-align:center;
+  padding:14px;
+  background:transparent;
 }
-.app-header h1{color:#f4e1c1;}
+.app-header h1{
+  margin:0;
+  font-size:20px;
+  font-weight:600;
+}
 
+/* カード共通 */
 .card{
-  background:#4b3a2e;
-  border:1px solid #d4a373;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(212,163,115,.4);
-}
-.card-amount{
-  font-size:44px;
-  color:#ffd9a2;
+  background:#E8DDF7;         /* 延長カードのラベンダー */
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:14px;
+  text-align:center;
+  box-shadow:0 1px 4px rgba(0,0,0,0.08);
 }
 
+/* 現在料金のみ別色 */
+.card:first-child{
+  background:#DDE1E9;         /* スクショの上カード灰色 */
+}
+
+/* ラベル */
+.card-label{
+  font-size:16px;
+  margin-bottom:6px;
+  color:#4C435A;
+}
+
+/* 金額 */
+.card-amount{
+  font-size:42px;
+  font-weight:700;
+  color:#4C435A;
+}
+
+/* MAIN */
+.app-main{
+  flex:1;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* FOOTER */
+.app-footer{
+  padding:20px;
+  text-align:center;
+}
+
+/* BUTTON */
+.btn{
+  border:none;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:600;
+  padding:12px;
+  cursor:pointer;
+}
+
+/* SETTINGボタン */
 .btn.primary{
-  background:#d4a373;
-  color:#4b3a2e;
+  background:#61677B;
+  color:#fff;
+  width:100%;
 }
+
+/* RESET/その他 */
 .btn.secondary{
-  background:#4b3a2e;
-  color:#ffd9a2;
+  background:#CFCDE9;
+  color:#4C435A;
 }
+
+.btn.small{
+  padding:6px 10px;
+  font-size:16px;
+}
+
+/* 入力欄/項目 */
 .field-input{
-  background:#3b2f2f;
-  border:1px solid #d4a373;
-  color:#ffd9a2;
+  width:100%;
+  background:#FFFFFF;
+  border:1px solid #DDD;
+  border-radius:10px;
+  padding:10px;
+  font-size:18px;
+  color:#4C435A;
 }
-.counter-value{color:#ffd9a2;}
+
+/* カウンタ */
+.counter-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.counter-label{font-size:17px;}
+.counter-value{
+  width:45px;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+  color:#4C435A;
+}
+
+/* スクロール有効 */
+.app-main.scroll{overflow-y:auto;max-height:calc(100vh - 180px);}
