@@ -2,26 +2,26 @@
 // 設定値（お店用に調整）
 // ================================
 const DEFAULT_SETTINGS = {
-  cardCount: 2,          // 延長パターンの数（1〜3）
+  cardCount: 3,          // 延長パターンの数（1〜3）
 
   duration1: 30,         // 1パターン目の延長時間（分）
   duration2: 60,         // 2パターン目
   duration3: 90,         // 3パターン目
 
   // 男性料金
-  price1: 3600,          // 例：30分延長 男性1名
-  price2: 7200,         // 例：60分
+  price1: 6000,          // 例：30分延長 男性1名
+  price2: 12000,         // 例：60分
   price3: 18000,         // 例：90分
 
   // 女性料金
-  femalePrice1: 1800,
-  femalePrice2: 3600,
-  femalePrice3: 7200,
+  femalePrice1: 6000,
+  femalePrice2: 12000,
+  femalePrice3: 18000,
 
   // 指名料金
-  nominationPrice1: 2400,
-  nominationPrice2: 2400,
-  nominationPrice3: 2400
+  nominationPrice1: 2000,
+  nominationPrice2: 2000,
+  nominationPrice3: 2000
 };
 
 // ================================
