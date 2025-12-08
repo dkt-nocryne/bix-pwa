@@ -1,0 +1,208 @@
+/* ================================
+   📌 PWAテーマ固定（iOSダーク/ライト無視）
+================================ */
+:root { color-scheme:none; }
+
+* {
+  box-sizing: border-box;
+}
+
+body.app-body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #333;
+}
+
+.app-header h1 {
+  font-size: 20px;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.app-header .back {
+  margin-right: auto;
+}
+
+.app-main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app-main.scroll {
+  overflow-y: auto;
+}
+
+.app-footer {
+  padding: 16px;
+  border-top: 1px solid #333;
+}
+
+.card {
+  background: #111;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.card-label {
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.card-amount {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* ボタン */
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  width: 100%;
+  background: #bb86fc;
+  color: #000;
+}
+
+.btn.secondary {
+  background: #333;
+  color: #fff;
+}
+
+.btn.full {
+  width: 100%;
+}
+
+.btn.small {
+  padding: 4px 10px;
+  font-size: 16px;
+}
+
+.btn.female {
+  background: #a66766;
+  color: #fff;
+}
+
+.btn.back {
+  background: transparent;
+  color: #fff;
+  padding: 4px 8px;
+}
+
+/* 入力・カウンター */
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.field-input {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #000;
+  color: #fff;
+}
+
+.field-input.right {
+  text-align: right;
+}
+
+.counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.counter-label {
+  font-size: 16px;
+}
+
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.counter-value {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ========================
+   延長カードだけ余白を広げる
+======================== */
+
+/* 1枚目（現在料金）はそのまま */
+/* 2枚目と3枚目の延長カードに適用 */
+.card:nth-child(2),
+.card:nth-child(3) {
+  margin-bottom:24px;  /* ← 好きな数値に変更OK (推奨20〜30px) */
+}
+
+/* ==============================================
+   カード数に応じて高さを自動調整（均等割り）
+   ============================================== */
+
+/* カードコンテナ（extensionCards）を縦flexに */
+#extensionCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* カード間の余白（調整可） */
+}
+
+/* メイン領域を縦flexにして高さ可変 */
+.app-main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 160px); /* ヘッダー+フッタ分を引く値 */
+  overflow: hidden;
+}
+
+/* カードの高さを均等にする */
+#extensionCards .card {
+  flex: 1;                     /* ★これで均等割り */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* 中央寄せ */
+  min-height: 120px;           /* 最低高さ（好みで調整OK） */
+}
