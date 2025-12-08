@@ -4,52 +4,42 @@ html,body{ background:#000!important; color:#fff!important; }
 
 /* 以下にAスタイルのCSS（前回送ったコード）を続けて入れる */
 
-body.app-body {
-  background: linear-gradient(180deg,#000000,#1a1a1a);
-  color:#fff;
-  font-family:"Noto Sans JP",sans-serif;
+body.app-body{
+  background:#001e3c;
+  color:#c0eaff;
+  font-family:'Noto Sans JP',sans-serif;
 }
 
-/* ヘッダー */
 .app-header{
-  background:#000;
-  border-bottom:1px solid #c6a647;
+  background:#003566;
+  border-bottom:2px solid #00d9ff;
 }
-.app-header h1{color:#d9c27a;}
+.app-header h1{color:#00eaff;}
 
-/* カード */
 .card{
-  background:rgba(32,32,32,0.9);
-  border:1px solid #b49b46;
-  border-radius:14px;
-  box-shadow:0 0 10px rgba(255,215,0,0.25);
+  background:#002b5c;
+  border:1px solid #00bfff;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,200,255,.4);
 }
-
-/* 金額強調 */
 .card-amount{
-  font-size:48px;
+  font-size:46px;
   font-weight:bold;
-  color:#efd27c;
+  color:#00eaff;
 }
 
-/* ボタン */
 .btn.primary{
-  background:#c6a647;
-  color:#000;
+  background:#00eaff;
+  color:#003;
   font-weight:bold;
 }
 .btn.secondary{
-  background:#333;
-  border:1px solid #b49b46;
-  color:#efd27c;
+  background:#00395c;
+  color:#00eaff;
 }
-.btn.small,.btn.full{color:#fff;}
-
-/* 入力欄 */
 .field-input{
-  background:#111;
-  border:1px solid #b49b46;
-  color:#fff;
+  background:#001c33;
+  border:1px solid #00bfff;
+  color:#00eaff;
 }
-.counter-value{color:#ffe28a;}
-
+.counter-value{color:#7ee9ff;}
