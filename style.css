@@ -1,3 +1,9 @@
+/* ←これを先頭へ入れるとシステムテーマを完全にオフにできる */
+:root { color-scheme: none; }
+html,body{ background:#000!important; color:#fff!important; }
+
+/* 以下にAスタイルのCSS（前回送ったコード）を続けて入れる */
+
 body.app-body {
   background: linear-gradient(180deg,#000000,#1a1a1a);
   color:#fff;
@@ -46,3 +52,4 @@ body.app-body {
   color:#fff;
 }
 .counter-value{color:#ffe28a;}
+
