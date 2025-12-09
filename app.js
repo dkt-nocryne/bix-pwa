@@ -10,7 +10,7 @@ const DEFAULT_SETTINGS = {
 
   // 男性料金
   price1: 3600,          // 例：30分延長 男性1名
-  price2: 72000,         // 例：60分
+  price2: 7200,         // 例：60分
   price3: 10800,         // 例：90分
 
   // 女性料金
@@ -187,7 +187,7 @@ function createExtensionCard(label, amount, emphasized) {
   amountDiv.textContent = formatYen(amount);
 
   if (emphasized) {
-    card.style.background = '#222244';
+    card.style.background = '#9fb5cfff';
   }
 
   card.appendChild(labelDiv);

@@ -1,6 +1,6 @@
 {
-  "name": "延長料金チェック",
-  "short_name": "延長チェック",
+  "name": "延長確認",
+  "short_name": "延長確認",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
