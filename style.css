@@ -220,3 +220,6 @@ body.app-body {
   flex: 1.5; /* ← ここが強調倍率、1.5にすると更に目立つ */
 }
 
+.settings-page .btn.full {
+  margin-top: 6px; 
+}
