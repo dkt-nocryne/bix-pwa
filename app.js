@@ -206,19 +206,28 @@ function initSettingsScreen() {
   const currentChargeInput = document.getElementById('currentChargeInput');
   const currentChargeReset = document.getElementById('currentChargeReset');
   if (currentChargeInput) {
-    currentChargeInput.value = state.currentCharge || '';
-    currentChargeInput.addEventListener('input', () => {
-      const v = parseInt(currentChargeInput.value.replace(/[^0-9]/g, ''), 10);
-      const value = isNaN(v) ? 0 : v;
-      saveString(LS_KEYS.CURRENT_CHARGE, value.toString());
+    currentChargeInput.value = state.currentCharge ? Number(state.currentCharge).toLocaleString() : '';
+
+    // 入力時に3桁区切りへ自動整形
+    currentChargeInput.addEventListener('input', e => {
+      let raw = e.target.value.replace(/[^0-9]/g, '');   // 数字以外除去
+      if (raw === '') {
+        saveString(LS_KEYS.CURRENT_CHARGE, '0');
+        e.target.value = '';
+        return;
+      }
+      saveString(LS_KEYS.CURRENT_CHARGE, raw);          // 保存はコンマ無し
+      e.target.value = Number(raw).toLocaleString();    // 表示はコンマ付き
     });
   }
+
   if (currentChargeReset) {
     currentChargeReset.addEventListener('click', () => {
-      if (currentChargeInput) currentChargeInput.value = '';
+      currentChargeInput.value = '';
       saveString(LS_KEYS.CURRENT_CHARGE, '0');
     });
   }
+}
 
   // カウンター類
   initCounter(
@@ -296,7 +305,6 @@ function initSettingsScreen() {
       saveString(LS_KEYS.DISCOUNT3, '0');
     });
   }
-}
 
 function initCounter(labelId, incId, decId, storageKey, initialValue, minValue) {
   const label = document.getElementById(labelId);
