@@ -220,6 +220,38 @@ body.app-body {
   flex: 1.5; /* ← ここが強調倍率、1.5にすると更に目立つ */
 }
 
+/* ===============================
+   設定画面だけ余白圧縮レイアウト
+=============================== */
+
+.settings-page .app-main {
+  height: calc(100vh - 110px); /* ←100〜140に変えれば微調整可能 */
+  padding-bottom: 0;
+  margin-bottom: 0;
+  overflow-y: auto;
+}
+
+/* カード同士の間隔縮める */
+.settings-page .card {
+  margin-bottom: 8px; /* ←さらに減らすなら 4pxでも可 */
+  padding: 10px 12px;
+}
+
+/* 割引リセットと下の余白 */
+.settings-page #discountFields {
+  margin-bottom: 4px;
+}
+
+.settings-page .app-footer {
+  padding: 8px;
+}
+
+/* カウンタ列も圧縮 */
+.settings-page .counter-row {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 .settings-page .btn.full {
   margin-top: 6px; 
 }
