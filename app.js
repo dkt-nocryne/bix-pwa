@@ -56,35 +56,6 @@ function saveSettings(settings) {
   localStorage.setItem(LS_KEYS.SETTINGS, JSON.stringify(settings));
 }
 
-// ここに enableAutoComma() 関数を貼る
-function enableAutoComma(inputEl, storageKey) {
-  inputEl.addEventListener('input', (e) => {
-    const input = e.target;
-
-    const selectionStart = input.selectionStart;
-    const raw = input.value.replace(/,/g, '');       // カンマ除去
-    const numeric = raw.replace(/[^0-9]/g, '');      // 数字以外除去
-
-    if (numeric === '') {
-      input.value = '';
-      localStorage.setItem(storageKey, "0");
-      return;
-    }
-
-    const formatted = Number(numeric).toLocaleString();
-    input.value = formatted;
-    localStorage.setItem(storageKey, numeric);
-
-    const diff = formatted.length - raw.length;
-    input.setSelectionRange(selectionStart + diff, selectionStart + diff);
-  });
-
-  inputEl.addEventListener("blur", (e)=>{
-    const raw = localStorage.getItem(storageKey) || "0";
-    e.target.value = Number(raw).toLocaleString();
-  });
-}
-
 function loadInt(key, defaultValue) {
   const raw = localStorage.getItem(key);
   if (!raw) return defaultValue;
@@ -161,14 +132,10 @@ function initCalculatorScreen() {
   const state = loadState();
 
   // 現在の料金
-const currentChargeInput = document.getElementById('currentChargeInput');
-if(currentChargeInput){
-  currentChargeInput.value = state.currentCharge ? Number(state.currentCharge).toLocaleString() : "";
-  enableAutoComma(currentChargeInput, LS_KEYS.CURRENT_CHARGE);
-  enableAutoComma(document.getElementById('discount1Input'), LS_KEYS.DISCOUNT1);
-  enableAutoComma(document.getElementById('discount2Input'), LS_KEYS.DISCOUNT2);
-  enableAutoComma(document.getElementById('discount3Input'), LS_KEYS.DISCOUNT3);
-}
+  const currentChargeDisplay = document.getElementById('currentChargeDisplay');
+  if (currentChargeDisplay) {
+    currentChargeDisplay.textContent = formatYen(state.currentCharge);
+  }
 
   // 延長カード
   const container = document.getElementById('extensionCards');
@@ -228,37 +195,30 @@ function createExtensionCard(label, amount, emphasized) {
   return card;
 }
 
-// 現在の料金
-const currentChargeInput = document.getElementById('currentChargeInput');
-const currentChargeReset = document.getElementById('currentChargeReset');
+// ================================
+// 設定画面初期化（settings.html）
+// ================================
+function initSettingsScreen() {
+  const settings = loadSettings();
+  const state = loadState();
 
-if (currentChargeInput) {
-  // 画面描画時はカンマ付き表示
-  currentChargeInput.value = state.currentCharge ? Number(state.currentCharge).toLocaleString() : '';
-
-  // 入力中はカンマ無しで生数字を扱う
-  currentChargeInput.addEventListener('input', e => {
-    let raw = e.target.value.replace(/[^0-9]/g,'');
-    if (raw === '') raw = '0';
-    saveString(LS_KEYS.CURRENT_CHARGE, raw);
-    e.target.value = raw;  // 入力時はカンマなし
-  });
-
-  // フォーカスを離れたときにカンマ付けて見栄え整える
-  currentChargeInput.addEventListener('blur', e => {
-    const raw = localStorage.getItem(LS_KEYS.CURRENT_CHARGE) || '0';
-    e.target.value = Number(raw).toLocaleString();
-  });
-}
-
-// リセットボタン
-if (currentChargeReset) {
-  currentChargeReset.addEventListener('click', () => {
-    currentChargeInput.value = '';
-    saveString(LS_KEYS.CURRENT_CHARGE, '0');
-  });
-}
-
+  // 現在の料金
+  const currentChargeInput = document.getElementById('currentChargeInput');
+  const currentChargeReset = document.getElementById('currentChargeReset');
+  if (currentChargeInput) {
+    currentChargeInput.value = state.currentCharge || '';
+    currentChargeInput.addEventListener('input', () => {
+      const v = parseInt(currentChargeInput.value.replace(/[^0-9]/g, ''), 10);
+      const value = isNaN(v) ? 0 : v;
+      saveString(LS_KEYS.CURRENT_CHARGE, value.toString());
+    });
+  }
+  if (currentChargeReset) {
+    currentChargeReset.addEventListener('click', () => {
+      if (currentChargeInput) currentChargeInput.value = '';
+      saveString(LS_KEYS.CURRENT_CHARGE, '0');
+    });
+  }
 
   // カウンター類
   initCounter(
@@ -336,6 +296,7 @@ if (currentChargeReset) {
       saveString(LS_KEYS.DISCOUNT3, '0');
     });
   }
+}
 
 function initCounter(labelId, incId, decId, storageKey, initialValue, minValue) {
   const label = document.getElementById(labelId);
